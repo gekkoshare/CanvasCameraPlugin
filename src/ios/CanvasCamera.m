@@ -311,7 +311,7 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    Boolean landscape = false;
+    Boolean landscape = true;
 
     @autoreleasepool {
 
