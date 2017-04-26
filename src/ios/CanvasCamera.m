@@ -311,7 +311,7 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    Boolean landscape = [CanvasCamera setVideoOrientation:connection];
+    Boolean landscape = false;
 
     @autoreleasepool {
 
@@ -416,36 +416,6 @@
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     
     return image;
-}
-
-+ (Boolean)setVideoOrientation:(AVCaptureConnection *)connection
-{
-    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-    Boolean landscape = true;
-
-    if ([connection isVideoOrientationSupported])
-    {
-        switch(deviceOrientation) {
-            case UIInterfaceOrientationPortraitUpsideDown:
-                [connection setVideoOrientation:AVCaptureVideoOrientationPortraitUpsideDown];
-                landscape = false;
-                break;
-            case UIInterfaceOrientationPortrait:
-                [connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-                landscape = false;
-                break;
-            case UIInterfaceOrientationLandscapeLeft:
-                [connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
-                break;
-            case UIInterfaceOrientationLandscapeRight:
-                [connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
-                break;
-            default:
-                break;
-        }
-    }
-
-    return landscape;
 }
 
 
